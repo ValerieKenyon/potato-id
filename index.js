@@ -133,3 +133,33 @@ window.onload = function _main () {
   console.log("init page");
   main();
 }
+
+/* for search by UID */
+let searchForm = document.getElementById('searchForm');
+
+searchForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  let searchText = document.getElementById('searchText').value;
+  getCharacters(searchText);
+});
+
+function getCharacters(searchText){
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', 'http.json', true);
+  xhr.onload = function(){
+    if(this.status == 200){
+      let potatoData = JSON.parse(this.responseText);
+
+      let output = '';
+
+      for(let i in potatoData){
+        output += ...; // not sure what to do with this
+      }
+      document.getElementById('potatoData').innerHTML = output;
+    }
+  }
+  xhr.onerror = function(){
+    console.log('Request error');
+  }
+  xhr.send();
+};
